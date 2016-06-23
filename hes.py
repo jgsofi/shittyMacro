@@ -22,11 +22,14 @@ print('Possible getters:')
 for i, method in enumerate(methods):
     print('({}) {}'.format(i, method))
 print('Enter whitespace separated selections (default: all)')
-selected_indexes = map(int, raw_input().split())
-
-# Grab desired fields in selected order
-methodset = dict(enumerate(methods))
-selected = [methodset[i] for i in selected_indexes]
+selected_raw = raw_input()
+if selected_raw:
+    selected_indexes = map(int, selected_raw.split())
+    # Grab desired fields in selected order
+    methodset = dict(enumerate(methods))
+    selected = [methodset[i] for i in selected_indexes]
+else:
+    selected = methods
 
 # Build from templates
 comparators = "\n            && ".join(
